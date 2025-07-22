@@ -1,9 +1,8 @@
 {
-  "name": "@repo/auth",
+  "name": "@repo/db",
   "type": "module",
   "exports": {
-    ".": "./src/index.ts",
-    "./*": ["./src/*.tsx", "./src/*.ts"]
+    "./*": "./src/*.ts"
   },
   "dependencies": {
     "next-auth": "^4.24.11"

@@ -1,7 +1,4 @@
 // packages/auth/index.ts
-import NextAuth, { SessionStrategy } from "next-auth"
-import CredentialsProvider from "next-auth/providers/credentials"
-import { connectDB, User } from "../../db"
 
 export const authOptions = {
   providers: [

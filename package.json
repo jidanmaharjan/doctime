@@ -22,7 +22,6 @@
     "packages/*"
   ],
   "dependencies": {
-    "mongoose": "^8.16.4",
-    "next-auth": "^4.24.11"
+    "mongoose": "^8.16.4"
   }
 }
