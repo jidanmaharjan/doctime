@@ -1,19 +1,24 @@
-// packages/auth/index.ts
+import NextAuth from "next-auth"
+import Credentials from "next-auth/providers/credentials"
+import type { AuthOptions, SessionStrategy } from "next-auth"
+import { connectDB } from "@repo/db/connect"
+import { User } from "@repo/db/models/User"
 
-export const authOptions = {
+export const authOptions: AuthOptions = {
   providers: [
-    CredentialsProvider({
+    Credentials({
       name: "Credentials",
       credentials: {
-        email: {},
-        password: {},
+        email: { label: "Email", type: "text" },
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
         await connectDB()
-        const user = await User.findOne({ email: credentials?.email })
+
+        const user = await User.findOne({ email: credentials?.email }).lean()
         if (!user || user.password !== credentials?.password) return null
 
-        return { id: user._id, email: user.email, role: user.role }
+        return { id: user._id.toString(), email: user.email, role: user.role }
       },
     }),
   ],
@@ -22,13 +27,18 @@ export const authOptions = {
   },
   callbacks: {
     async jwt({ token, user }) {
-      if (user) token.role = user.role
+      if (user) token.role = (user as any).role
       return token
     },
     async session({ session, token }) {
-      session.user.role = token.role
+      if (session.user) {
+        session.user.role = token.role
+      }
       return session
     },
+  },
+  pages: {
+    signIn: "/login",
   },
 }
 

@@ -1,2 +1,2 @@
 import { handler } from "@repo/auth"
-export default handler
+export { handler as GET, handler as POST }

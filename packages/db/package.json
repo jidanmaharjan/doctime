@@ -5,7 +5,6 @@
     "./*": "./src/*.ts"
   },
   "dependencies": {
-    "next-auth": "^4.24.11"
   },
   "devDependencies": {
     "@repo/typescript-config": "*",
