@@ -19,7 +19,8 @@
     "paths": {
       "@repo/auth": ["packages/auth"],
       "@repo/db": ["packages/db"],
-      "@repo/ui": ["packages/ui"]
+      "@repo/ui": ["packages/ui"],
+      "@repo/ui/*": ["packages/ui/src/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "../../types"]
